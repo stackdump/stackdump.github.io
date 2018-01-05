@@ -40,7 +40,7 @@ A Bitwrap machine can be explained as follows:
 
 #### Using a Petri-Net to design a bitwrap machine
 
-![tic-tac-toe state machine](http://www.blahchain.com/image/octoe.png)
+![tic-tac-toe state machine](../_static/octoe.png)
 
 The state machine above models a game of tic-tac-toe.
 
@@ -96,4 +96,4 @@ This determinism makes Bitwrap machines ideally suited as a method of
 modeling event data using an eventstore, ledger, or a blockchain database.
 
 
-Read [More Articles](?post=articles)
+Read [More Articles](../articles.html)

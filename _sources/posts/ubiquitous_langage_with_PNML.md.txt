@@ -56,5 +56,5 @@ Furthermore, by reducing the 'statefullness' of an application to mere vector ad
   
 #### Learn more
 
- See example languages describing fizz-buzz & a game Tic-Tac-Toe: [Using Petri-Nets to construct a language](?post=dsl_creation)
+ See example languages describing fizz-buzz & a game Tic-Tac-Toe: [Using Petri-Nets to construct a language](dsl_creation.html)
 
