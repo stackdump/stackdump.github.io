@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DDD-Flow Graph &#8212; blahchain.com  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Constructing a Language with a Petri-Net" href="dsl_creation.html" />
+    <link rel="prev" title="Blahchain" href="../index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/logo.png"></span>
+          blahchain.com</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Blog <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">DDD-Flow Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsl_creation.html">Constructing a Language with a Petri-Net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstpost.html">Blockchains &amp; State Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubiquitous_langage_with_PNML.html">Petri-Nets as Mental Model for Domain Driven Design</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../articles.html">Submissions to Reddit &amp; Hackernews</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">DDD-Flow Graph</a><ul>
+<li><a class="reference internal" href="#a-petri-net-inspired-graph-format">A Petri-Net inspired Graph Format</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="../index.html" title="Previous Chapter: Blahchain"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Blahchain</span>
+    </a>
+  </li>
+  <li>
+    <a href="dsl_creation.html" title="Next Chapter: Constructing a Language with a Petri-Net"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Constructing ... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/posts/ddd_flow.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="ddd-flow-graph">
+<h1>DDD-Flow Graph<a class="headerlink" href="#ddd-flow-graph" title="Permalink to this headline">¶</a></h1>
+<p>Here we demonstrate a graph that resembles a Petri-Net
+but represents Elements of Domain Driven Design
+as they apply to Eventstorming</p>
+<div class="section" id="a-petri-net-inspired-graph-format">
+<h2>A Petri-Net inspired Graph Format<a class="headerlink" href="#a-petri-net-inspired-graph-format" title="Permalink to this headline">¶</a></h2>
+<img src="../_images/graphviz-e54ea77e6952123a40f9a6976b72cacec7e9e99a.png" alt="digraph G {
+    subgraph cluster0{
+        label=&quot;DDD-flow&quot;;
+
+        subgraph ExternalSystem {
+            node [shape=circle,style=filled,fillcolor=darkorchid1,fixwidth=true,width=1];
+            &quot;External&quot;;
+        }
+
+        subgraph Aggregate {
+            node [shape=circle,style=filled,fillcolor=gray,fixwidth=true,width=1];
+            &quot;Aggregate&quot;;
+        }
+
+        subgraph Actor {
+            node [shape=doublecircle,style=filled,fillcolor=yellow,width=1];
+            &quot;Actor&quot;;
+        }
+
+        subgraph TimerTrigger {
+            node [shape=hexagon,style=filled,fillcolor=red,height=0.8];
+            &quot;Timer / Trigger&quot;;
+        }
+
+        subgraph Command {
+            node [shape=rect,style=filled,fillcolor=orange,height=0.2];
+            &quot;Command&quot;;
+        }
+
+        subgraph DomainEvent {
+            node [shape=rect,style=filled,fillcolor=green,height=0.2];
+            &quot;DomainEvent&quot;;
+        }
+
+        subgraph cluster2 {
+            label=&quot;A Game of Tic-Tac-Toe&quot;;
+
+            subgraph ExternalSystem {
+                node [shape=circle,style=filled,fillcolor=darkorchid1,fixwidth=true,width=1];
+                &quot;GameMaker&quot;;
+            }
+
+            subgraph Aggregate {
+                node [shape=circle,style=filled,fillcolor=gray,fixwidth=true,width=1];
+                &quot;Move History&quot;;
+                &quot;Turn&quot;;
+            }
+
+            subgraph Actor {
+                node [shape=doublecircle,style=filled,fillcolor=yellow,width=1];
+                &quot;PlayerX&quot;;
+                &quot;PlayerO&quot;;
+                &quot;Judge&quot;;
+            }
+
+            subgraph Trigger {
+                node [shape=hexagon,style=filled,fillcolor=red,height=0.8];
+                &quot;WinnerFound&quot;;
+                &quot;IsTurn&quot;;
+            }
+
+            subgraph Command {
+                node [shape=rect,style=filled,fillcolor=orange,height=0.2];
+                &quot;new&quot;;
+                &quot;next_turn&quot;;
+                &quot;winner_x&quot;;
+                &quot;winner_o&quot;;
+            }
+
+            subgraph DomainEvent {
+                node [shape=rect,style=filled,fillcolor=green,height=0.2];
+                &quot;X&quot;;
+                &quot;O&quot;;
+            }
+
+            &quot;GameMaker&quot; -&gt; &quot;new&quot;
+            &quot;Judge&quot; -&gt; &quot;new&quot;
+            &quot;new&quot; -&gt; &quot;Move History&quot;
+            &quot;Judge&quot; -&gt; &quot;winner_x&quot;
+            &quot;Judge&quot; -&gt; &quot;winner_o&quot;
+            &quot;Move History&quot; -&gt; &quot;winner_x&quot;
+            &quot;Move History&quot; -&gt; &quot;winner_o&quot;
+            &quot;PlayerX&quot; -&gt; &quot;X&quot;
+            &quot;PlayerO&quot; -&gt; &quot;O&quot;
+            &quot;X&quot; -&gt; &quot;Move History&quot;
+            &quot;O&quot; -&gt; &quot;Move History&quot;
+            &quot;Move History&quot; -&gt; &quot;next_turn&quot;
+            &quot;next_turn&quot; -&gt; &quot;Turn&quot;
+            &quot;WinnerFound&quot; -&gt; &quot;winner_x&quot;
+            &quot;WinnerFound&quot; -&gt; &quot;winner_o&quot;
+            &quot;IsTurn&quot; -&gt; &quot;X&quot;
+            &quot;IsTurn&quot; -&gt; &quot;O&quot;
+            &quot;Turn&quot; -&gt; &quot;X&quot;
+            &quot;Turn&quot; -&gt; &quot;O&quot;
+            &quot;Judge&quot; -&gt; &quot;next_turn&quot;
+        }
+
+    }
+    &quot;External&quot; -&gt; &quot;Command&quot;
+    &quot;Command&quot; -&gt; &quot;Aggregate&quot;
+    &quot;DomainEvent&quot; -&gt; &quot;Aggregate&quot;
+    &quot;Aggregate&quot; -&gt; &quot;DomainEvent&quot;
+    &quot;Aggregate&quot; -&gt; &quot;Command&quot;
+    &quot;Actor&quot; -&gt; &quot;Command&quot;
+    &quot;Actor&quot; -&gt; &quot;DomainEvent&quot;
+    &quot;Timer / Trigger&quot; -&gt; &quot;Command&quot;
+    &quot;Timer / Trigger&quot; -&gt; &quot;DomainEvent&quot;
+
+}" />
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+        <a href="https://github.com/stackdump/stackdump.github.com" class="btn btn-social-icon btn-github">
+        <span class="fa fa-github"></span> source repo
+        </a>
+        <a href="https://twitter.com/orksliver" class="btn btn-social-icon btn-twitter">
+          <span class="fa fa-twitter"></span> orksliver
+        </a>
+      <a href="#">Back to top</a>
+      
+    </p>
+  </div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96560613-3', 'auto');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>

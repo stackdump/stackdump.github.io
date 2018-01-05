@@ -1,0 +1,4 @@
+Sphinx==1.6.5
+recommonmark==0.4.0
+sphinx-bootstrap-theme==0.6.0
+sphinxcontrib-googleanalytics==0.1

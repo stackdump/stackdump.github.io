@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Constructing a Language with a Petri-Net &#8212; blahchain.com  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Blockchains &amp; State Machines" href="firstpost.html" />
+    <link rel="prev" title="DDD-Flow Graph" href="ddd_flow.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/logo.png"></span>
+          blahchain.com</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Blog <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ddd_flow.html">DDD-Flow Graph</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Constructing a Language with a Petri-Net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstpost.html">Blockchains &amp; State Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubiquitous_langage_with_PNML.html">Petri-Nets as Mental Model for Domain Driven Design</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../articles.html">Submissions to Reddit &amp; Hackernews</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Constructing a Language with a Petri-Net</a><ul>
+<li><a class="reference internal" href="#why-build-a-dsl">Why build a DSL?</a></li>
+<li><a class="reference internal" href="#limitation">Limitation</a><ul>
+<li><a class="reference internal" href="#considering-whether-to-construct-a-dsl">Considering whether to construct a DSL</a></li>
+<li><a class="reference internal" href="#language-is-for-humans">Language is for humans</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-can-it-fizz-buzz">Example: Can it Fizz-Buzz?</a><ul>
+<li><a class="reference internal" href="#the-resulting-dsl">The resulting DSL</a></li>
+<li><a class="reference internal" href="#example-tic-tac-toe">Example: Tic-Tac-Toe</a></li>
+<li><a class="reference internal" href="#the-resulting-dsl">The resulting DSL</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#future">Future</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="ddd_flow.html" title="Previous Chapter: DDD-Flow Graph"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; DDD-Flow Graph</span>
+    </a>
+  </li>
+  <li>
+    <a href="firstpost.html" title="Next Chapter: Blockchains & State Machines"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Blockchains &... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/posts/dsl_creation.md.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="constructing-a-language-with-a-petri-net">
+<span id="constructing-a-language-with-a-petri-net"></span><h1>Constructing a Language with a Petri-Net<a class="headerlink" href="#constructing-a-language-with-a-petri-net" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Petri_net">Petri-Net</a> models can be used to generate a regular grammar,
+and can aid in the creation and design of a Domain specific language.</p>
+<p>The generated grammar describes <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_language">regular language</a></p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Regular_language">regular language</a>
+can be defined as a language recognized by a finite automaton.</p>
+<p>The equivalence of regular expressions and finite automata is known as
+Kleene's theorem<a class="reference external" href="https://en.wikipedia.org/wiki/Regular_language#cite_note-RozenbergSalomaa1997-3">3</a></p>
+<div class="section" id="why-build-a-dsl">
+<span id="why-build-a-dsl"></span><h2>Why build a DSL?<a class="headerlink" href="#why-build-a-dsl" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Domain-specific_language#Advantages_and_disadvantages">benefits</a>
+(and limitations) of DSL construction may not be immediately apparent.</p>
+<p>However, there are several practical applications
+of using this technique to compose a protocol or language.</p>
+<ul class="simple">
+<li>A Petri-net graph author can<ul>
+<li>describe a problem domain without writing code</li>
+<li>use the graph to simulate a program sequence</li>
+</ul>
+</li>
+<li>Petri-Nets can be expressed as pure math<ul>
+<li>using an equivalent <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_addition_system">Vector addition system</a></li>
+<li>makes them easy to employ as <a class="reference external" href="https://en.wikipedia.org/wiki/Finite-state_machine">State Machines</a></li>
+</ul>
+</li>
+<li>Can be used to construct a protocol<ul>
+<li>that is <em>not</em> <a class="reference external" href="https://en.wikipedia.org/wiki/Turing_completeness">Turing complete</a><ul>
+<li>^ though it should be possible to make it turing complete - there is more advantage to keeping your language 'small'.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="limitation">
+<span id="limitation"></span><h2>Limitation<a class="headerlink" href="#limitation" title="Permalink to this headline">¶</a></h2>
+<p>The obvious limitation is effort - find a way to demonstrate why that effort is well spent.</p>
+<div class="section" id="considering-whether-to-construct-a-dsl">
+<span id="considering-whether-to-construct-a-dsl"></span><h3>Considering whether to construct a DSL<a class="headerlink" href="#considering-whether-to-construct-a-dsl" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>be clear about what problems you are trying to solve</li>
+<li>if you are solving a distributed problem by creating a protocol (for consumption as an API only)<ul>
+<li>weigh the cost of custom protocol creation vs adopting an existing standard</li>
+<li>will developers be willing to use the protocol you create?</li>
+</ul>
+</li>
+<li>if you are constructing a language for consumption by end-users (not as an API or msg protocol)<ul>
+<li>consider why you want to create a language<ul>
+<li>what benefits do you hope to give your users?</li>
+<li>will your user be willing to learn the language you create?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="language-is-for-humans">
+<span id="language-is-for-humans"></span><h3>Language is for humans<a class="headerlink" href="#language-is-for-humans" title="Permalink to this headline">¶</a></h3>
+<p>Petri-Nets represent a pure theoretical model for computation that machines and people can comprehend.</p>
+<p>This allows the core rules of a grammar to be leveraged as an API for
+interaction with another higher level programming language.</p>
+</div>
+</div>
+<div class="section" id="example-can-it-fizz-buzz">
+<span id="example-can-it-fizz-buzz"></span><h2>Example: Can it Fizz-Buzz?<a class="headerlink" href="#example-can-it-fizz-buzz" title="Permalink to this headline">¶</a></h2>
+<p>Here is an attempt to model <a class="reference external" href="https://en.wikipedia.org/wiki/Fizz_buzz#Programming_interviews">fizz-buzz</a></p>
+<p>The outer ring of places and transitions represent a counter
+that counts from 1 to 15.</p>
+<p>The inner places are 'accumulator', 'fizz', and 'buzz'</p>
+<p>We model the essential logic of the problem by counting using the 'accumulator' place.</p>
+<p>Whenever the token in the outer ring passes over 'T3', 'T6', 'T9', 'T12', and 'T15'
+the Petri-Net signals 'fizz' - by adding a token to the 'fizz' place.</p>
+<p>Whenever the token passes over 'T5', 'T10', and 'T15'
+the Petri-Net signals 'buzz' - by adding a token to the 'fizz' place.</p>
+<p>NOTE: on 'T15' - both 'fizz' and 'buzz' occur</p>
+<p><img alt="fizzbuzz Petri-Net" src="../_images/fizzbuzz.png" /></p>
+<div class="section" id="the-resulting-dsl">
+<span id="the-resulting-dsl"></span><h3>The resulting DSL<a class="headerlink" href="#the-resulting-dsl" title="Permalink to this headline">¶</a></h3>
+<p>This problem isn't very interesting as a language</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;verbs&#39;</span><span class="p">:</span> <span class="n">are</span> <span class="n">just</span> <span class="n">clock</span><span class="o">-</span><span class="n">ticks</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="o">...</span> 
+<span class="s1">&#39;nouns&#39;</span> <span class="p">:</span> <span class="s1">&#39;fizz&#39;</span><span class="p">,</span> <span class="s1">&#39;buzz&#39;</span><span class="p">,</span> <span class="ow">and</span> <span class="s1">&#39;accumulator&#39;</span> <span class="nb">map</span> <span class="n">to</span> <span class="n">integer</span> <span class="n">variables</span>
+</pre></div>
+</div>
+<p>So a valid sentence in fizz-buzz language will look like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">begin</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span> <span class="o">...</span> <span class="n">T15</span><span class="p">,</span> <span class="n">T1</span><span class="p">,</span> <span class="n">T2</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-tic-tac-toe">
+<span id="example-tic-tac-toe"></span><h3>Example: Tic-Tac-Toe<a class="headerlink" href="#example-tic-tac-toe" title="Permalink to this headline">¶</a></h3>
+<p>Modeling a game like Tic-Tac-Toe yields a more comprehensible language.</p>
+<p><img alt="TicTacToe Petri-Net" src="../_images/octoe.png" /></p>
+</div>
+<div class="section" id="the-resulting-dsl">
+<span id="id1"></span><h3>The resulting DSL<a class="headerlink" href="#the-resulting-dsl" title="Permalink to this headline">¶</a></h3>
+<p>Here the language is more useful</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;verbs&#39;</span><span class="p">:</span> <span class="n">correspond</span> <span class="n">to</span> <span class="n">moves</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">game</span>
+         <span class="s1">&#39;BEGIN&#39;</span> <span class="n">starts</span> <span class="n">a</span> <span class="n">game</span>
+
+         <span class="s1">&#39;M[012][012]&#39;</span> <span class="n">takes</span> <span class="n">a</span> <span class="n">given</span> <span class="n">move</span> <span class="n">on</span> <span class="n">on</span> <span class="n">the</span> <span class="n">gameboard</span>
+         <span class="s1">&#39;M11&#39;</span> <span class="k">for</span> <span class="n">example</span> <span class="n">marks</span> <span class="n">the</span> <span class="n">center</span> <span class="n">square</span> <span class="p">(</span><span class="n">coordinates</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="s1">&#39;nouns&#39;</span><span class="p">:</span> <span class="s1">&#39;turn_x&#39;</span> <span class="ow">and</span> <span class="s1">&#39;turn_O&#39;</span> <span class="n">indiciate</span> <span class="n">which</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">play</span>
+          <span class="s1">&#39;NEW&#39;</span> <span class="n">desginates</span> <span class="n">that</span> <span class="n">the</span> <span class="n">game</span> <span class="n">has</span> <span class="ow">not</span> <span class="n">started</span>
+</pre></div>
+</div>
+<p>A valid sentence in Tic-Tac-Toe Lang looks like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">begin</span><span class="p">,</span> <span class="n">x10</span><span class="p">,</span> <span class="n">o02</span><span class="p">,</span> <span class="n">x22</span><span class="p">,</span> <span class="n">o00</span><span class="p">,</span> <span class="n">x20</span><span class="p">,</span> <span class="n">o21</span><span class="p">,</span> <span class="n">x12</span><span class="p">,</span> <span class="n">o11</span><span class="p">,</span> <span class="n">x01</span>
+</pre></div>
+</div>
+<p>Which is much more expressive - and useful as it can be used to play a game of Tic-Tac-Toe</p>
+</div>
+</div>
+<div class="section" id="future">
+<span id="future"></span><h2>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h2>
+<p>The concepts discussed here have been explored during the course of development of the <a class="reference external" href="https://github.com/bitwrap">&#64;bitwrap</a> Eventstore.</p>
+<p>With continued work on this project I hope to develop and release a set of tools that allows
+developers to more easily deal with the complexities that arise during DSL design and development.</p>
+<p>You can follow along or contribute to our work
+by reviewing the reference implementation on github: <a class="reference external" href="https://github.com/bitwrap/bitwrap-io">https://github.com/bitwrap/bitwrap-io</a></p>
+<p>or</p>
+<p>Learn more by playing with an interactive Tic-Tac-Toe Demo here <a class="reference external" href="https://bitwrap.github.io/#octothorpe">https://bitwrap.github.io/#octothorpe</a></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+        <a href="https://github.com/stackdump/stackdump.github.com" class="btn btn-social-icon btn-github">
+        <span class="fa fa-github"></span> source repo
+        </a>
+        <a href="https://twitter.com/orksliver" class="btn btn-social-icon btn-twitter">
+          <span class="fa fa-twitter"></span> orksliver
+        </a>
+      <a href="#">Back to top</a>
+      
+    </p>
+  </div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96560613-3', 'auto');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>

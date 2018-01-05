@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Petri-Nets as Mental Model for Domain Driven Design &#8212; blahchain.com  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="External Posts" href="../articles.html" />
+    <link rel="prev" title="Blockchains &amp; State Machines" href="firstpost.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/logo.png"></span>
+          blahchain.com</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Blog <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ddd_flow.html">DDD-Flow Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsl_creation.html">Constructing a Language with a Petri-Net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firstpost.html">Blockchains &amp; State Machines</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Petri-Nets as Mental Model for Domain Driven Design</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../articles.html">Submissions to Reddit &amp; Hackernews</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Petri-Nets as Mental Model for Domain Driven Design</a><ul>
+<li><a class="reference internal" href="#theory-of-computation">Theory of Computation</a></li>
+<li><a class="reference internal" href="#application">Application</a></li>
+<li><a class="reference internal" href="#kleene-s-theorem">Kleene's theorem</a></li>
+<li><a class="reference internal" href="#conclusion-what-s-the-payoff">Conclusion - what's the payoff?</a><ul>
+<li><a class="reference internal" href="#learn-more">Learn more</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="firstpost.html" title="Previous Chapter: Blockchains & State Machines"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Blockchains &...</span>
+    </a>
+  </li>
+  <li>
+    <a href="../articles.html" title="Next Chapter: External Posts"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">External Posts &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/posts/ubiquitous_langage_with_PNML.md.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="petri-nets-as-mental-model-for-domain-driven-design">
+<span id="petri-nets-as-mental-model-for-domain-driven-design"></span><h1>Petri-Nets as Mental Model for Domain Driven Design<a class="headerlink" href="#petri-nets-as-mental-model-for-domain-driven-design" title="Permalink to this headline">¶</a></h1>
+<p>One of the goals of Domain Driven Design is attempt to construct an <a class="reference external" href="https://martinfowler.com/bliki/UbiquitousLanguage.html">UbiquitousLanguage</a>
+that thoroughly describes a system.</p>
+<p>By using a Petri-Net as a mental model during an <a class="reference external" href="https://en.wikipedia.org/wiki/Event_Storming">Event Storming</a> session
+contributors can document event designs using a specification that is both verifiable and executable.</p>
+<p>Here we describe a technique for directly applying Petri-Net Markup Language (PNML) as an executable specification for domain events,
+but first we will briefly introduce some of the principles at play.</p>
+<div class="section" id="theory-of-computation">
+<span id="theory-of-computation"></span><h2>Theory of Computation<a class="headerlink" href="#theory-of-computation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In simple terms an algorithm is <a class="reference external" href="https://en.wikipedia.org/wiki/Computability">computable</a> if a person can sit down with pencil and paper to solve the problem<ul>
+<li>That is to say there exists a general method of defining and attacking the problem.</li>
+</ul>
+</li>
+</ul>
+<p>Petri-Nets are known to be a good method of defining a <a class="reference external" href="https://en.wikipedia.org/wiki/Computability#Concurrency-based_models">'concurrency-based model'</a>
+of computation.</p>
+<p>Wielding PNML as a formal specification for a <a class="reference external" href="https://martinfowler.com/eaaCatalog/domainModel.html">domain model</a>
+lets us build systems that has have verifiable runtime output.</p>
+</div>
+<div class="section" id="application">
+<span id="application"></span><h2>Application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
+<p>Simply put: the aim of this technique is to name PNML elements: 'states' and 'transitions' --
+in a way that creates a Ubiquitous Language that describes domain events.</p>
+<p>Any Petri-Net can be convertible into a <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_addition_system">vector addition system (with state) VASS</a>.</p>
+<p>This vector system is useful as a state-machine API whereby we can validate events flowing through the system.</p>
+<p>Additionally, using PNML in this manner constricts the degrees of freedom we use to construct a language,
+because of this limitation we can assure that the constructed language is a <em>Regular Language</em> that is <a class="reference external" href="https://en.wikipedia.org/wiki/Petri_net#cite_note-14">not Turing complete</a>.</p>
+<p>Kleene's theorem illustrates how Regular Languages and State Machines are two sides of the same coin.</p>
+</div>
+<div class="section" id="kleene-s-theorem">
+<span id="kleene-s-theorem"></span><h2><a class="reference external" href="https://en.wikipedia.org/wiki/Regular_language#cite_note-RozenbergSalomaa1997-3">Kleene's theorem</a><a class="headerlink" href="#kleene-s-theorem" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">[</span><span class="n">regular</span> <span class="n">language</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">en</span><span class="o">.</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">Regular_language</span><span class="p">)</span>
+<span class="n">can</span> <span class="n">be</span> <span class="n">defined</span> <span class="k">as</span> <span class="n">a</span> <span class="n">language</span> <span class="n">recognized</span> <span class="n">by</span> <span class="n">a</span> <span class="n">finite</span> <span class="n">automaton</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Another way of describing this technique is:</p>
+<ul class="simple">
+<li>PNML serves as an <a class="reference external" href="https://en.wikipedia.org/wiki/Action_language">action language</a> for<ul>
+<li>defining a formal state-transition system</li>
+<li>that resulting system and provides a method to express that logic as a finite automaton</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="conclusion-what-s-the-payoff">
+<span id="conclusion-what-s-the-payoff"></span><h2>Conclusion - what's the payoff?<a class="headerlink" href="#conclusion-what-s-the-payoff" title="Permalink to this headline">¶</a></h2>
+<p>This technique complements Domain Driven Design principles and further refines the practice of event-storming into a formal method.</p>
+<p>Using PNML defined algorithms as state machines allows for localized actors to draw very concise context boundaries around event handlers.</p>
+<p>Furthermore, by reducing the 'statefullness' of an application to mere vector addition,
+we can construct large systems that are easier to understand and validate.</p>
+<div class="section" id="learn-more">
+<span id="learn-more"></span><h3>Learn more<a class="headerlink" href="#learn-more" title="Permalink to this headline">¶</a></h3>
+<p>See example languages describing fizz-buzz &amp; a game Tic-Tac-Toe: <a class="reference external" href="?post=dsl_creation">Using Petri-Nets to construct a language</a></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+        <a href="https://github.com/stackdump/stackdump.github.com" class="btn btn-social-icon btn-github">
+        <span class="fa fa-github"></span> source repo
+        </a>
+        <a href="https://twitter.com/orksliver" class="btn btn-social-icon btn-twitter">
+          <span class="fa fa-twitter"></span> orksliver
+        </a>
+      <a href="#">Back to top</a>
+      
+    </p>
+  </div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96560613-3', 'auto');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>

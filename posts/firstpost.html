@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blockchains &amp; State Machines &#8212; blahchain.com  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Petri-Nets as Mental Model for Domain Driven Design" href="ubiquitous_langage_with_PNML.html" />
+    <link rel="prev" title="Constructing a Language with a Petri-Net" href="dsl_creation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" crossorigin="anonymous">
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/logo.png"></span>
+          blahchain.com</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Blog <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ddd_flow.html">DDD-Flow Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dsl_creation.html">Constructing a Language with a Petri-Net</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Blockchains &amp; State Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubiquitous_langage_with_PNML.html">Petri-Nets as Mental Model for Domain Driven Design</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../articles.html">Submissions to Reddit &amp; Hackernews</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Blockchains &amp; State Machines</a><ul>
+<li><a class="reference internal" href="#vector-addition-systems-are-petri-net-equivilant">Vector Addition Systems are Petri-Net Equivilant</a></li>
+<li><a class="reference internal" href="#introducing-bitwrap-machines">Introducing Bitwrap Machines</a><ul>
+<li><a class="reference internal" href="#program-code-expressed-as-a-counter-machine">Program code expressed as a counter machine</a></li>
+<li><a class="reference internal" href="#using-a-petri-net-to-design-a-bitwrap-machine">Using a Petri-Net to design a bitwrap machine</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#this-is-this-turing-complete">This is this Turing complete?</a><ul>
+<li><a class="reference internal" href="#application-to-blockchains">Application to Blockchains</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="dsl_creation.html" title="Previous Chapter: Constructing a Language with a Petri-Net"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Constructing ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="ubiquitous_langage_with_PNML.html" title="Next Chapter: Petri-Nets as Mental Model for Domain Driven Design"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Petri-Nets as... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/posts/firstpost.md.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="blockchains-state-machines">
+<span id="blockchains-state-machines"></span><h1>Blockchains &amp; State Machines<a class="headerlink" href="#blockchains-state-machines" title="Permalink to this headline">¶</a></h1>
+<p>In this post we examine some deterministic state machines
+and explore possible application to blockchain technology.</p>
+<div class="section" id="vector-addition-systems-are-petri-net-equivilant">
+<span id="vector-addition-systems-are-petri-net-equivilant"></span><h2>Vector Addition Systems are Petri-Net Equivilant<a class="headerlink" href="#vector-addition-systems-are-petri-net-equivilant" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_addition_system">Vector Addition System (with States) VASS</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">vector</span> <span class="n">addition</span> <span class="n">system</span> <span class="n">consists</span> <span class="n">of</span> <span class="n">a</span> <span class="n">finite</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">integer</span> <span class="n">vectors</span><span class="o">.</span>
+<span class="n">An</span> <span class="n">initial</span> <span class="n">vector</span> <span class="ow">is</span> <span class="n">seen</span> <span class="k">as</span> <span class="n">the</span> <span class="n">initial</span> <span class="n">values</span> <span class="n">of</span> <span class="n">multiple</span> <span class="n">counters</span><span class="p">,</span>
+<span class="ow">and</span> <span class="n">the</span> <span class="n">vectors</span> <span class="n">of</span> <span class="n">the</span> <span class="n">VAS</span> <span class="n">are</span> <span class="n">seen</span> <span class="k">as</span> <span class="n">updates</span><span class="o">.</span>
+<span class="n">These</span> <span class="n">counters</span> <span class="n">may</span> <span class="n">never</span> <span class="n">drop</span> <span class="n">below</span> <span class="n">zero</span><span class="o">.</span>
+
+<span class="n">More</span> <span class="n">precisely</span><span class="p">,</span> <span class="n">given</span> <span class="n">an</span> <span class="n">initial</span> <span class="n">vector</span> <span class="k">with</span> <span class="n">non</span> <span class="n">negative</span> <span class="n">values</span><span class="p">,</span>
+<span class="n">the</span> <span class="n">vectors</span> <span class="n">of</span> <span class="n">the</span> <span class="n">VAS</span> <span class="n">can</span> <span class="n">be</span> <span class="n">added</span> <span class="n">componentwise</span><span class="p">,</span>
+<span class="n">given</span> <span class="n">that</span> <span class="n">every</span> <span class="n">intermediate</span> <span class="n">vector</span> <span class="n">has</span> <span class="n">non</span> <span class="n">negative</span> <span class="n">values</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="introducing-bitwrap-machines">
+<span id="introducing-bitwrap-machines"></span><h2>Introducing Bitwrap Machines<a class="headerlink" href="#introducing-bitwrap-machines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="program-code-expressed-as-a-counter-machine">
+<span id="program-code-expressed-as-a-counter-machine"></span><h3>Program code expressed as a counter machine<a class="headerlink" href="#program-code-expressed-as-a-counter-machine" title="Permalink to this headline">¶</a></h3>
+<p>A Bitwrap machine can be explained as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">It</span> <span class="n">declares</span> <span class="n">a</span> <span class="n">single</span> <span class="s1">&#39;state-vector&#39;</span> <span class="n">of</span> <span class="n">size</span> <span class="s1">&#39;n&#39;</span>
+   <span class="o">*</span> <span class="n">the</span> <span class="n">machine</span> <span class="ow">is</span> <span class="n">said</span> <span class="n">to</span> <span class="n">have</span> <span class="s1">&#39;n&#39;</span> <span class="n">places</span>
+   <span class="o">*</span> <span class="n">each</span> <span class="n">place</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">has</span> <span class="n">a</span> <span class="n">pre</span><span class="o">-</span><span class="n">defined</span> <span class="n">inital</span> <span class="n">value</span><span class="o">.</span>
+<span class="mf">2.</span> <span class="s1">&#39;transitions&#39;</span> <span class="n">are</span> <span class="n">defined</span> <span class="k">as</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">delta</span> <span class="n">vectors</span>
+   <span class="o">*</span> <span class="n">of</span> <span class="n">size</span> <span class="s1">&#39;n&#39;</span> 
+   <span class="o">*</span> <span class="n">containing</span> <span class="n">positive</span> <span class="ow">or</span> <span class="n">negative</span> <span class="n">integers</span><span class="o">.</span>
+<span class="mf">3.</span> <span class="n">Transactions</span> <span class="n">are</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">the</span> <span class="n">current</span> <span class="n">state</span> <span class="n">vector</span> <span class="n">using</span> <span class="n">vector</span> <span class="n">addition</span><span class="o">.</span>
+<span class="mf">4.</span> <span class="n">The</span> <span class="s1">&#39;state-vector&#39;</span> <span class="ow">is</span> <span class="n">stored</span> <span class="n">after</span> <span class="n">each</span> <span class="n">valid</span> <span class="n">transaction</span><span class="o">.</span>
+<span class="mf">5.</span> <span class="n">No</span> <span class="n">place</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">may</span> <span class="n">store</span> <span class="n">a</span> <span class="n">negative</span> <span class="n">value</span><span class="o">.</span>
+   <span class="o">*</span> <span class="n">only</span> <span class="n">valid</span> <span class="n">output</span> <span class="n">states</span> <span class="n">are</span> <span class="n">stored</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-a-petri-net-to-design-a-bitwrap-machine">
+<span id="using-a-petri-net-to-design-a-bitwrap-machine"></span><h3>Using a Petri-Net to design a bitwrap machine<a class="headerlink" href="#using-a-petri-net-to-design-a-bitwrap-machine" title="Permalink to this headline">¶</a></h3>
+<p><img alt="tic-tac-toe state machine" src="http://www.blahchain.com/image/octoe.png" /></p>
+<p>The state machine above models a game of tic-tac-toe.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">NEW</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">turn_x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">turn_o</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">M00</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M01</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M02</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M10</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M11</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M12</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M20</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M21</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">M22</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Notice that we can map each 'Place' from the diagram to a position in a vector below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># inital state:</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Begin:</span>
+<span class="o">+</span>  <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Move X11:</span>
+<span class="o">+</span>  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Move O11:</span>
+<span class="o">+</span>  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># INVALID!</span>
+
+<span class="c1"># Move X00:</span>
+<span class="o">+</span>  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="c1"># INVALID!</span>
+
+<span class="c1"># Move O00:</span>
+<span class="o">+</span>  <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">=&gt;</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="this-is-this-turing-complete">
+<span id="this-is-this-turing-complete"></span><h2>This is this Turing complete?<a class="headerlink" href="#this-is-this-turing-complete" title="Permalink to this headline">¶</a></h2>
+<p>Definitively <em>NO</em> - elementary Petri-Nets are only made turing complete by extending the rules to add conditionals called 'Inhibitor Arcs'.</p>
+<p>However - Bitwrap does allow for Inhibitor Arcs as a useful way of declaring a role.</p>
+<ul class="simple">
+<li>The role feature is still a <a class="reference external" href="https://github.com/bitwrap/bitwrap-machine/blob/master/bitwrap_machine/dsl.py#L10">work in progess</a>.</li>
+</ul>
+<div class="section" id="application-to-blockchains">
+<span id="application-to-blockchains"></span><h3>Application to Blockchains<a class="headerlink" href="#application-to-blockchains" title="Permalink to this headline">¶</a></h3>
+<p>By combining this deterministic model with an event store,
+we can now reliably architect applications and services designed to span multiple blockchain providers and notations.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<span id="conclusion"></span><h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>The bitwrap state machine algorithm relies only on mathematical primitives.
+Each transaction is modeled by deterministic operations represented as vector addition.</p>
+<p>This determinism makes Bitwrap machines ideally suited as a method of
+modeling event data using an eventstore, ledger, or a blockchain database.</p>
+<p>Read <a class="reference external" href="?post=articles">More Articles</a></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+        <a href="https://github.com/stackdump/stackdump.github.com" class="btn btn-social-icon btn-github">
+        <span class="fa fa-github"></span> source repo
+        </a>
+        <a href="https://twitter.com/orksliver" class="btn btn-social-icon btn-twitter">
+          <span class="fa fa-twitter"></span> orksliver
+        </a>
+      <a href="#">Back to top</a>
+      
+    </p>
+  </div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-96560613-3', 'auto');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>
