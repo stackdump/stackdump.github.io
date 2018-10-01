@@ -4,7 +4,7 @@ Blockchains & State Machines
 In this post we examine some deterministic state machines
 and explore possible application to blockchain technology.
 
-Vector Addition Systems are Petri-Net Equivilant
+Vector Addition Systems are Petri-Net Equivilent
 ------------------------------------------------
 
 A [Vector Addition System (with States) VASS](https://en.wikipedia.org/wiki/Vector_addition_system)
