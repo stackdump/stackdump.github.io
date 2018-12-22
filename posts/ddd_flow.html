@@ -65,6 +65,7 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">DDD-Flow Graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dsl_creation.html">Constructing a Language with a Petri-Net</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dualistic_nets.html">Dualistic PetriNets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="firstpost.html">Blockchains &amp; State Machines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ubiquitous_langage_with_PNML.html">Petri-Nets as Mental Model for Domain Driven Design</a></li>
 </ul>
@@ -141,7 +142,7 @@ but represents Elements of Domain Driven Design
 as they apply to Eventstorming</p>
 <div class="section" id="a-petri-net-inspired-graph-format">
 <h2>A Petri-Net inspired Graph Format<a class="headerlink" href="#a-petri-net-inspired-graph-format" title="Permalink to this headline">¶</a></h2>
-digraph G {
+<img src="../_images/graphviz-e54ea77e6952123a40f9a6976b72cacec7e9e99a.png" alt="digraph G {
     subgraph cluster0{
         label=&quot;DDD-flow&quot;;
 
@@ -249,7 +250,8 @@ digraph G {
     &quot;Timer / Trigger&quot; -&gt; &quot;Command&quot;
     &quot;Timer / Trigger&quot; -&gt; &quot;DomainEvent&quot;
 
-}</div>
+}" />
+</div>
 </div>
 
 
