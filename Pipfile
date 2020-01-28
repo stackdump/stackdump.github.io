@@ -10,6 +10,3 @@ sphinxcontrib-googleanalytics = "==0.1"
 Sphinx = "==1.6.5"
 
 [dev-packages]
-
-[requires]
-python_version = "3.6"
